@@ -15,15 +15,39 @@ case "$OS" in
   *)       echo "不支持的系统: $OS"; exit 1 ;;
 esac
 
+# 检查命令是否存在
+check_cmd() {
+  command -v "$1" &> /dev/null
+}
+
 # 安装依赖
 echo ""
-echo ">>> 安装依赖工具..."
+echo ">>> 检查依赖工具..."
 
 if command -v brew &> /dev/null; then
   # macOS (Homebrew)
-  brew install neovim ripgrep fd-find tree-sitter-cli stylua lazygit font-jetbrains-mono-nerd-font 2>/dev/null || {
-    echo "Homebrew 安装失败，请手动安装: neovim ripgrep fd tree-sitter-cli stylua lazygit font-jetbrains-mono-nerd-font"
-  }
+  TOOLS=""
+  check_cmd nvim || TOOLS="$TOOLS neovim"
+  check_cmd rg || TOOLS="$TOOLS ripgrep"
+  check_cmd fd || TOOLS="$TOOLS fd"
+  check_cmd tree-sitter || TOOLS="$TOOLS tree-sitter-cli"
+  check_cmd stylua || TOOLS="$TOOLS stylua"
+  check_cmd lazygit || TOOLS="$TOOLS lazygit"
+
+  if [ -n "$TOOLS" ]; then
+    echo "需要安装:$TOOLS"
+    brew install $TOOLS 2>/dev/null || echo "Homebrew 安装失败，请手动安装"
+  else
+    echo "所有依赖工具已安装 ✓"
+  fi
+
+  # 安装 Nerd Font
+  if [ ! -d "$(brew --prefix)/Caskroom/font-jetbrains-mono-nerd-font" ]; then
+    echo "安装字体: font-jetbrains-mono-nerd-font"
+    brew install --cask font-jetbrains-mono-nerd-font 2>/dev/null || echo "字体安装失败，请手动安装"
+  else
+    echo "字体已安装 ✓"
+  fi
 elif command -v apt &> /dev/null; then
   # Debian/Ubuntu
   sudo apt update
@@ -91,7 +115,7 @@ echo ">>> 克隆 Neovim 配置..."
 mkdir -p "$NVIM_DIR"
 
 # 从 GitHub 克隆 (替换为你的仓库地址)
-REPO_URL="https://github.com/finn-wu/nvim-config.git"
+REPO_URL="git@github.com:Shu-Ji/my-nvim-config-v2.git"
 if git clone "$REPO_URL" "$NVIM_DIR" 2>/dev/null; then
   echo "配置已克隆到: $NVIM_DIR"
 else
