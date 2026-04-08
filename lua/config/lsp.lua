@@ -36,16 +36,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- K 键由 nvim-ufo 处理（预览折叠或悬停文档）
     vim.keymap.set("n", ";rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "重命名" })
     vim.keymap.set("n", ";ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "代码操作" })
-    vim.keymap.set("n", ";f", function()
-      require("conform").format({ bufnr = bufnr })
-    end, { buffer = bufnr, desc = "格式化" })
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "上一个诊断" })
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "下一个诊断" })
 
-    -- 禁用 LSP 格式化 (使用 conform.nvim)
+    -- 禁用 LSP 格式化 (使用 conform.nvim)，但保留部分语言的 LSP 格式化
     if client then
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
+      -- jsonls 保留格式化能力
+      if client.name ~= "jsonls" then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end
     end
   end,
 })

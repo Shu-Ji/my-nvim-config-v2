@@ -64,19 +64,11 @@ return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = "ConformInfo",
+    keys = {
+      { ";f", function() require("conform").format({ lsp_fallback = true }) end, desc = "格式化代码" },
+    },
     opts = {
       formatters_by_ft = {
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        vue = { "prettier" },
-        css = { "prettier" },
-        scss = { "prettier" },
-        html = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
         python = { "ruff_format", "ruff_fix" },
         rust = { "rustfmt" },
         lua = { "stylua" },
