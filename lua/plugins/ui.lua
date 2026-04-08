@@ -26,6 +26,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
+    lazy = false, -- 禁用懒加载
     dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
       options = {
