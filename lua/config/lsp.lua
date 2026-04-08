@@ -112,5 +112,15 @@ vim.lsp.config("tailwindcss", {
   capabilities = capabilities,
 })
 
+vim.lsp.config("jsonls", {
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" },
+  root_markers = { ".git" },
+  capabilities = capabilities,
+  init_options = {
+    provideFormatter = true,
+  },
+})
+
 -- 启用所有配置的 LSP
-vim.lsp.enable({ "lua_ls", "ts_ls", "pyright", "rust_analyzer", "tailwindcss" })
+vim.lsp.enable({ "lua_ls", "ts_ls", "pyright", "rust_analyzer", "tailwindcss", "jsonls" })

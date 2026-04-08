@@ -16,6 +16,7 @@ return {
         "rust_analyzer", -- Rust
         "lua_ls",      -- Lua
         "tailwindcss", -- Tailwind CSS
+        "jsonls",      -- JSON
       },
     },
   },
