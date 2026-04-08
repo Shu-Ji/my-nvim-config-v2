@@ -20,11 +20,29 @@ vim.diagnostic.config({
   },
 })
 
--- 禁用 LSP 格式化 (使用 conform.nvim)
+-- LSP 快捷键和格式化禁用
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),
+  group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
   callback = function(ev)
+    local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    -- LSP 快捷键
+    local opts = { buffer = bufnr }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "跳转定义" })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "跳转声明" })
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "查找引用" })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "跳转实现" })
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "悬停文档" })
+    vim.keymap.set("n", ";rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "重命名" })
+    vim.keymap.set("n", ";ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "代码操作" })
+    vim.keymap.set("n", ";f", function()
+      require("conform").format({ bufnr = bufnr })
+    end, { buffer = bufnr, desc = "格式化" })
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "上一个诊断" })
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "下一个诊断" })
+
+    -- 禁用 LSP 格式化 (使用 conform.nvim)
     if client then
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false

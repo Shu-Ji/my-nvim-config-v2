@@ -103,6 +103,9 @@ return {
   -- 代码大纲
   {
     "stevearc/aerial.nvim",
+    keys = {
+      { ";o", "<cmd>AerialToggle!<cr>", desc = "代码大纲" },
+    },
     opts = {
       layout = { default_direction = "right" },
     },
