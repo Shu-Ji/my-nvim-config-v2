@@ -2,15 +2,10 @@
 vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"
 
--- 禁用不需要的 provider
+-- 禁用不需要的 provider (Lua 生态不需要)
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
-
--- Python 路径 (可选，如果存在则使用)
-local py3_path = vim.fn.expand("~/.virtualenvs/neovim-py3/bin/python3")
-if vim.fn.filereadable(py3_path) == 1 then
-  vim.g.python3_host_prog = py3_path
-end
+vim.g.loaded_python3_provider = 0
 
 -- 基础选项
 local opt = vim.opt
