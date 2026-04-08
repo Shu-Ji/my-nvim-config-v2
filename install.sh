@@ -21,8 +21,8 @@ echo ">>> 安装依赖工具..."
 
 if command -v brew &> /dev/null; then
   # macOS (Homebrew)
-  brew install neovim ripgrep fd-find tree-sitter-cli stylua lazygit font-hack-nerd-font 2>/dev/null || {
-    echo "Homebrew 安装失败，请手动安装: neovim ripgrep fd tree-sitter-cli stylua lazygit font-hack-nerd-font"
+  brew install neovim ripgrep fd-find tree-sitter-cli stylua lazygit font-jetbrains-mono-nerd-font 2>/dev/null || {
+    echo "Homebrew 安装失败，请手动安装: neovim ripgrep fd tree-sitter-cli stylua lazygit font-jetbrains-mono-nerd-font"
   }
 elif command -v apt &> /dev/null; then
   # Debian/Ubuntu
@@ -53,26 +53,26 @@ else
 fi
 
 # 安装 Nerd Font (Linux 通用方法)
-if [[ "$OS" == "Linux" ]] && [ ! -f "$HOME/.local/share/fonts/HackNerdFont-Regular.ttf" ]; then
+if [[ "$OS" == "Linux" ]] && [ ! -f "$HOME/.local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf" ]; then
   echo ""
-  echo ">>> 安装 Hack Nerd Font..."
+  echo ">>> 安装 JetBrainsMono Nerd Font..."
   FONT_DIR="$HOME/.local/share/fonts"
   mkdir -p "$FONT_DIR"
 
-  # 下载 Hack Nerd Font
-  FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
-  curl -fsSL "$FONT_URL" -o /tmp/HackNerdFont.zip
-  unzip -q /tmp/HackNerdFont.zip -d "$FONT_DIR" 2>/dev/null || {
+  # 下载 JetBrainsMono Nerd Font
+  FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
+  curl -fsSL "$FONT_URL" -o /tmp/JetBrainsMonoNerdFont.zip
+  unzip -q /tmp/JetBrainsMonoNerdFont.zip -d "$FONT_DIR" 2>/dev/null || {
     echo "解压失败，请手动下载: $FONT_URL"
   }
-  rm -f /tmp/HackNerdFont.zip
+  rm -f /tmp/JetBrainsMonoNerdFont.zip
 
   # 刷新字体缓存
   if command -v fc-cache &> /dev/null; then
     fc-cache -f "$FONT_DIR"
   fi
   echo "字体已安装到: $FONT_DIR"
-  echo "请在终端设置中选择 'Hack Nerd Font' 或 'Hack Nerd Font Mono'"
+  echo "请在终端设置中选择 'JetBrainsMono Nerd Font' 或 'JetBrainsMono Nerd Font Mono'"
 fi
 
 # 备份旧配置
