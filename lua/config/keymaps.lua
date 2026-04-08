@@ -3,8 +3,7 @@ local map = vim.keymap.set
 
 -- 基础快捷键
 map("n", ";w", "<cmd>w<cr>", { desc = "保存" })
-map("n", ";q", "<cmd>q<cr>", { desc = "退出" })
-map("n", ";Q", "<cmd>qa<cr>", { desc = "全部退出" })
+map("n", ";q", "<cmd>qa<cr>", { desc = "退出全部" })
 map("n", ";/", "<cmd>nohlsearch<cr>", { desc = "取消高亮" })
 
 -- 插入模式

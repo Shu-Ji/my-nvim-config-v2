@@ -62,7 +62,7 @@ return {
         { ";", group = "leader" },
         { ";g", group = "Git" },
         { ";w", desc = "保存", cmd = "<cmd>w<cr>" },
-        { ";q", desc = "退出", cmd = "<cmd>q<cr>" },
+        { ";q", desc = "退出全部", cmd = "<cmd>qa<cr>" },
         { ";/", desc = "取消高亮", cmd = "<cmd>nohlsearch<cr>" },
         { ";p", desc = "查找文件", cmd = "<cmd>Telescope find_files<cr>" },
         { ";F", desc = "全局搜索", cmd = "<cmd>Telescope live_grep<cr>" },
