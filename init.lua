@@ -37,6 +37,10 @@ opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.fillchars = { fold = " ", diff = " ", eob = " " }
 
+-- 鼠标支持
+vim.o.mouse = "a" -- 启用所有模式的鼠标支持
+vim.o.mousemodel = "popup" -- 右键弹出菜单
+
 -- 引导 lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
