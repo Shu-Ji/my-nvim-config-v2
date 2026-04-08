@@ -36,7 +36,7 @@ opt.completeopt = "menu,menuone,noselect"
 opt.cmdheight = 1
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-opt.fillchars = { fold = " ", diff = " ", eob = " " }
+opt.fillchars = { eob = " " }
 
 -- 鼠标支持
 vim.o.mouse = "a" -- 启用所有模式的鼠标支持
