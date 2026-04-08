@@ -14,7 +14,7 @@ return {
     require("ufo").setup({
       -- 智能选择 provider
       provider_selector = function(bufnr, filetype, buftype)
-        return { "treesitter", "indent" }
+        return { "indent" }
       end,
       -- 自定义折叠显示：显示折叠行数
       fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)

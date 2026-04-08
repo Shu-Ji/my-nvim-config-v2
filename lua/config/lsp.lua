@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "跳转声明" })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "查找引用" })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "跳转实现" })
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "悬停文档" })
+    -- K 键由 nvim-ufo 处理（预览折叠或悬停文档）
     vim.keymap.set("n", ";rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "重命名" })
     vim.keymap.set("n", ";ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "代码操作" })
     vim.keymap.set("n", ";f", function()
