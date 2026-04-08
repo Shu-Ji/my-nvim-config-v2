@@ -11,11 +11,11 @@ return {
     dependencies = { "neovim/nvim-lspconfig" },
     opts = {
       ensure_installed = {
-        "typescript-language-server",
-        "pyright",
-        "rust-analyzer",
-        "lua-language-server",
-        "tailwindcss-language-server",
+        "ts_ls",       -- TypeScript/JavaScript
+        "pyright",     -- Python
+        "rust_analyzer", -- Rust
+        "lua_ls",      -- Lua
+        "tailwindcss", -- Tailwind CSS
       },
     },
   },
