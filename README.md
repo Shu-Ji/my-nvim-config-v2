@@ -14,15 +14,15 @@
 
 ## 快捷键 (Leader: `;`)
 
-| 快捷键 | 功能 |
-|--------|------|
-| `;w` | 保存 |
-| `;q` | 退出 |
-| `;p` | 查找文件 |
-| `;F` | 全局搜索 |
-| `;n` | 文件树 |
-| `;<Space>` | 注释 |
-| `;;` | 快捷键列表 (which-key) |
+| 快捷键     | 功能                   |
+| ---------- | ---------------------- |
+| `;w`       | 保存                   |
+| `;q`       | 退出                   |
+| `;p`       | 查找文件               |
+| `;F`       | 全局搜索               |
+| `;n`       | 文件树                 |
+| `;<Space>` | 注释                   |
+| `;;`       | 快捷键列表 (which-key) |
 
 ## 安装
 
@@ -30,13 +30,14 @@
 2. 安装依赖: `brew install ripgrep fd`
 3. 克隆配置:
    ```bash
-   git clone https://github.com/你的用户名/nvim-config.git ~/.config/nvim
+   git clone https://github.com/Shu-Ji/my-nvim-config-v2.git ~/.config/nvim
    ```
 4. 启动 nvim，lazy.nvim 会自动安装插件
 
 ## LSP 支持
 
 通过 Mason 安装 LSP servers:
+
 - TypeScript/JavaScript (typescript-language-server)
 - Python (pyright + ruff)
 - Rust (rust-analyzer)
