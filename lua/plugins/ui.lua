@@ -29,18 +29,18 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
       options = {
-        mode = "tabs",
+        mode = "buffers", -- 显示所有 buffer
         diagnostics = "nvim_lsp",
         separator_style = "slant",
-        show_buffer_close_icons = false,
+        show_buffer_close_icons = true,
         show_close_icon = false,
       },
     },
     keys = {
-      { "<Left>", "<cmd>BufferLineCyclePrev<cr>", desc = "上一个 Tab" },
-      { "<Right>", "<cmd>BufferLineCycleNext<cr>", desc = "下一个 Tab" },
-      { ";bd", "<cmd>tabclose<cr>", desc = "关闭 Tab" },
-      { ";tn", "<cmd>tabnew<cr>", desc = "新建 Tab" },
+      { "<Left>", "<cmd>BufferLineCyclePrev<cr>", desc = "上一个 Buffer" },
+      { "<Right>", "<cmd>BufferLineCycleNext<cr>", desc = "下一个 Buffer" },
+      { ";bd", "<cmd>bdelete<cr>", desc = "关闭 Buffer" },
+      { ";tn", "<cmd>enew<cr>", desc = "新建 Buffer" },
     },
   },
 
