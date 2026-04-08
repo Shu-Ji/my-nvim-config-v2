@@ -33,8 +33,6 @@ autocmd("InsertLeave", {
   end,
 })
 
--- 禁用 JSON 缩进线
-autocmd("FileType", { pattern = "json", command = "IBLDisable" })
 
 -- JSX 文件类型
 augroup("FiletypeGroup", { clear = true })

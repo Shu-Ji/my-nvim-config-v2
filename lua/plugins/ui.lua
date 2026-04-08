@@ -101,10 +101,21 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
+    lazy = false,
     opts = {
       indent = { char = "│" },
       scope = { enabled = true },
     },
+    config = function(_, opts)
+      require("ibl").setup(opts)
+      -- 启动时确保启用
+      vim.api.nvim_create_autocmd("VimEnter", {
+        once = true,
+        callback = function()
+          vim.cmd("IBLEnable")
+        end,
+      })
+    end,
   },
 
   -- 括号高亮

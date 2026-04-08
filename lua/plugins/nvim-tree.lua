@@ -46,12 +46,13 @@ return {
       },
     })
 
-    -- 启动时自动打开
+    -- 启动时自动打开，光标保持在文件 buffer
     vim.api.nvim_create_autocmd("VimEnter", {
       group = vim.api.nvim_create_augroup("NvimTreeOnEnter", { clear = true }),
       callback = function()
         vim.defer_fn(function()
           vim.cmd("NvimTreeOpen")
+          vim.cmd("wincmd l") -- 光标移动到右侧窗口
         end, 100)
       end,
     })
