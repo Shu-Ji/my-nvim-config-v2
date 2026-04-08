@@ -94,8 +94,9 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { ";j", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "跳转" },
-      { ";J", mode = { "n", "o" }, function() require("flash").treesitter() end, desc = "Treesitter 跳转" },
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "快速跳转 (当前屏幕)" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Treesitter 跳转" },
+      { ";s", mode = { "n", "x", "o" }, function() require("flash").jump({ search = { mode = "search", max_length = 0 } }) end, desc = "搜索跳转 (全文件)" },
     },
   },
 
