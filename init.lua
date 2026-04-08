@@ -6,8 +6,11 @@ vim.g.maplocalleader = ";"
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
--- Python 路径
-vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim-py3/bin/python3")
+-- Python 路径 (可选，如果存在则使用)
+local py3_path = vim.fn.expand("~/.virtualenvs/neovim-py3/bin/python3")
+if vim.fn.filereadable(py3_path) == 1 then
+  vim.g.python3_host_prog = py3_path
+end
 
 -- 基础选项
 local opt = vim.opt
