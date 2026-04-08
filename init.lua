@@ -22,6 +22,7 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.cursorline = true
 opt.signcolumn = "yes"
+opt.colorcolumn = "80" -- 80列标尺
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true

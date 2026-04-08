@@ -38,7 +38,7 @@ return {
         numbers = "ordinal", -- 显示数字序号
         offsets = {
           {
-            filetype = "neo-tree",
+            filetype = "NvimTree",
             text = "文件",
             text_align = "left",
             separator = true,
