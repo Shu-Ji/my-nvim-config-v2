@@ -7,7 +7,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  cmd = "Neotree",
+  event = "VimEnter",
   keys = {
     { ";n", "<cmd>Neotree toggle<cr>", desc = "文件树" },
     { ";N", "<cmd>Neotree reveal<cr>", desc = "定位当前文件" },
@@ -27,4 +27,13 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("neo-tree").setup(opts)
+    -- 启动时自动打开文件树
+    vim.api.nvim_create_autocmd("VimEnter", {
+      callback = function()
+        vim.cmd("Neotree show")
+      end,
+    })
+  end,
 }
