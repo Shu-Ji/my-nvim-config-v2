@@ -60,10 +60,7 @@ return {
       local wk = require("which-key")
       wk.add({
         { ";", group = "leader" },
-        { ";f", group = "查找" },
         { ";g", group = "Git" },
-        { ";l", group = "LSP" },
-        { ";t", group = "Tab/Toggle" },
         { ";w", desc = "保存", cmd = "<cmd>w<cr>" },
         { ";q", desc = "退出", cmd = "<cmd>q<cr>" },
         { ";/", desc = "取消高亮", cmd = "<cmd>nohlsearch<cr>" },
@@ -71,7 +68,6 @@ return {
         { ";F", desc = "全局搜索", cmd = "<cmd>Telescope live_grep<cr>" },
         { ";b", desc = "查找 Buffer", cmd = "<cmd>Telescope buffers<cr>" },
         { ";h", desc = "帮助", cmd = "<cmd>Telescope help_tags<cr>" },
-        { ";s", desc = "重载配置", cmd = "<cmd>source $MYVIMRC<cr>" },
         { ";ee", desc = "编辑配置", cmd = "<cmd>e $MYVIMRC<cr>" },
         { ";;", desc = "快捷键列表", cmd = "<cmd>WhichKey<cr>" },
       })

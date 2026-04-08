@@ -20,36 +20,11 @@ vim.diagnostic.config({
   },
 })
 
--- LSP Attach 自动命令 (替代 on_attach)
+-- 禁用 LSP 格式化 (使用 conform.nvim)
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
+  group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),
   callback = function(ev)
-    local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-    local map = function(keys, func, desc)
-      vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-    end
-
-    -- LSP 快捷键
-    map(";d", vim.lsp.buf.definition, "跳转定义")
-    map(";D", vim.lsp.buf.declaration, "跳转声明")
-    map(";i", vim.lsp.buf.implementation, "跳转实现")
-    map(";t", vim.lsp.buf.type_definition, "跳转类型定义")
-    map(";r", vim.lsp.buf.rename, "重命名")
-    map(";a", vim.lsp.buf.code_action, "代码操作")
-    map(";R", "<cmd>Telescope lsp_references<cr>", "查找引用")
-    map(";s", "<cmd>Telescope lsp_document_symbols<cr>", "文档符号")
-    map(";S", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "工作区符号")
-    map("K", vim.lsp.buf.hover, "文档悬浮")
-    map(";k", vim.diagnostic.goto_prev, "上一个诊断")
-    map(";j", vim.diagnostic.goto_next, "下一个诊断")
-    map(";E", "<cmd>Telescope diagnostics bufnr=0<cr>", "诊断列表")
-    map(";m", function()
-      require("conform").format({ bufnr = bufnr })
-    end, "格式化")
-
-    -- 禁用某些客户端的格式化 (使用 conform.nvim)
     if client then
       client.server_capabilities.documentFormattingProvider = false
       client.server_capabilities.documentRangeFormattingProvider = false
