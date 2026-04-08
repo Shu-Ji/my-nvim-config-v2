@@ -14,10 +14,6 @@ return {
     require("ufo").setup({
       -- 智能选择 provider
       provider_selector = function(bufnr, filetype, buftype)
-        -- JSON 文件使用 indent，其他用 treesitter + indent
-        if filetype == "json" then
-          return { "indent" }
-        end
         return { "treesitter", "indent" }
       end,
       -- 自定义折叠显示：显示折叠行数
