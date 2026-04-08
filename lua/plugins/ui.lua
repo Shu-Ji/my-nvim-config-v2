@@ -61,6 +61,7 @@ return {
       wk.add({
         { ";", group = "leader" },
         { ";g", group = "Git" },
+        { ";x", group = "诊断" },
         { ";w", desc = "保存", cmd = "<cmd>w<cr>" },
         { ";q", desc = "退出全部", cmd = "<cmd>qa<cr>" },
         { ";/", desc = "取消高亮", cmd = "<cmd>nohlsearch<cr>" },
