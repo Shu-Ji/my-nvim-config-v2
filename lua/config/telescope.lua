@@ -5,6 +5,9 @@ local builtin = require("telescope.builtin")
 
 telescope.setup({
   defaults = {
+    preview = {
+      treesitter = false, -- 禁用 treesitter preview (Neovim 0.12 API 变化)
+    },
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
