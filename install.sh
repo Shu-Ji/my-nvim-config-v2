@@ -51,20 +51,27 @@ if command -v brew &> /dev/null; then
 elif command -v apt &> /dev/null; then
   # Debian/Ubuntu
   sudo apt update
-  sudo apt install -y neovim ripgrep fd-find
-  # tree-sitter-cli 需要额外安装
-  curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz" | gunzip > /tmp/tree-sitter
-  sudo mv /tmp/tree-sitter /usr/local/bin/tree-sitter
-  sudo chmod +x /usr/local/bin/tree-sitter
+  sudo apt install -y neovim ripgrep fd-find build-essential clang libclang-dev
+  # tree-sitter-cli 需要编译安装
+  cargo install tree-sitter-cli 2>/dev/null || {
+    echo "cargo 未安装，正在安装 rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+    cargo install tree-sitter-cli
+  }
 elif command -v pacman &> /dev/null; then
   # Arch Linux
   sudo pacman -S --noconfirm neovim ripgrep fd tree-sitter stylua lazygit ttf-hack-nerd
 elif command -v dnf &> /dev/null; then
   # Fedora
-  sudo dnf install -y neovim ripgrep fd-find
-  curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz" | gunzip > /tmp/tree-sitter
-  sudo mv /tmp/tree-sitter /usr/local/bin/tree-sitter
-  sudo chmod +x /usr/local/bin/tree-sitter
+  sudo dnf install -y neovim ripgrep fd-find clang clang-devel
+  # tree-sitter-cli 需要编译安装
+  cargo install tree-sitter-cli 2>/dev/null || {
+    echo "cargo 未安装，正在安装 rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+    cargo install tree-sitter-cli
+  }
 else
   echo "无法自动安装依赖，请手动安装以下工具:"
   echo "  - neovim (>= 0.10)"
