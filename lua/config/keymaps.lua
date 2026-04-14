@@ -57,9 +57,6 @@ map("n", "T", "O<ESC>j", { desc = "上方添加空行" })
 -- Redo
 map("n", "U", "<C-r>", { desc = "Redo" })
 
--- 全选
-map("n", ";sa", "ggVG", { desc = "全选" })
-
 -- 运行文件
 vim.api.nvim_create_user_command("Run", function()
   local ft = vim.bo.filetype
@@ -76,11 +73,6 @@ vim.api.nvim_create_user_command("Run", function()
   end
 end, {})
 map("n", ";r", "<cmd>Run<cr>", { desc = "运行" })
-
--- Tab 操作 (已移到 bufferline 配置中)
--- 分屏
-map("n", ";sv", "<cmd>vsplit<cr>", { desc = "垂直分屏" })
-map("n", ";ss", "<cmd>split<cr>", { desc = "水平分屏" })
 
 -- 删除不进入剪贴板
 map("x", "d", '"_d', { desc = "删除不复制" })

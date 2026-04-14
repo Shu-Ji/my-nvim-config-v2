@@ -1,4 +1,30 @@
 -- UI 插件
+local function close_current_buffer()
+  local current = vim.api.nvim_get_current_buf()
+  local ok, bufferline = pcall(require, "bufferline")
+
+  if ok then
+    local elements = bufferline.get_elements().elements or {}
+    local current_index
+
+    for index, element in ipairs(elements) do
+      if element.id == current then
+        current_index = index
+        break
+      end
+    end
+
+    if current_index and #elements > 1 then
+      local target_index = current_index < #elements and current_index + 1 or current_index - 1
+      bufferline.go_to(target_index, true)
+    end
+  end
+
+  if vim.api.nvim_buf_is_valid(current) then
+    vim.cmd("bdelete " .. current)
+  end
+end
+
 return {
   -- 状态栏
   {
@@ -49,7 +75,7 @@ return {
     keys = {
       { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "下一个 Buffer" },
       { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "上一个 Buffer" },
-      { ";bd", "<cmd>bdelete<cr>", desc = "关闭 Buffer" },
+      { ";bd", close_current_buffer, desc = "关闭 Buffer" },
       { ";bl", "<cmd>BufferLineCloseRight<cr>", desc = "关闭右侧 Buffer" },
       { ";bh", "<cmd>BufferLineCloseLeft<cr>", desc = "关闭左侧 Buffer" },
       { ";bp", "<cmd>BufferLineTogglePin<cr>", desc = "固定 Buffer" },
