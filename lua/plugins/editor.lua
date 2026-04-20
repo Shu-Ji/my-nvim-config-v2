@@ -72,6 +72,7 @@ return {
         python = { "ruff_format", "ruff_fix" },
         rust = { "rustfmt" },
         lua = { "stylua" },
+        xml = { "xmllint" },
       },
       format_on_save = {
         timeout_ms = 500,
