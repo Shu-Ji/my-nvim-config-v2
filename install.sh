@@ -53,12 +53,15 @@ elif command -v apt &> /dev/null; then
   sudo apt update
   sudo apt install -y neovim ripgrep fd-find build-essential clang libclang-dev
   # tree-sitter-cli 需要编译安装
-  cargo install tree-sitter-cli 2>/dev/null || {
-    echo "cargo 未安装，正在安装 rust..."
+  if ! command -v cargo &> /dev/null; then
+    echo "  → cargo 未安装，正在安装 Rust..."
+    echo "  → 下载 rustup..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    echo "  → 加载 cargo 环境..."
     source "$HOME/.cargo/env"
-    cargo install tree-sitter-cli
-  }
+  fi
+  echo "  → 安装 tree-sitter-cli (这可能需要几分钟)..."
+  cargo install tree-sitter-cli
 elif command -v pacman &> /dev/null; then
   # Arch Linux
   sudo pacman -S --noconfirm neovim ripgrep fd tree-sitter stylua lazygit ttf-hack-nerd
@@ -66,12 +69,15 @@ elif command -v dnf &> /dev/null; then
   # Fedora
   sudo dnf install -y neovim ripgrep fd-find clang clang-devel
   # tree-sitter-cli 需要编译安装
-  cargo install tree-sitter-cli 2>/dev/null || {
-    echo "cargo 未安装，正在安装 rust..."
+  if ! command -v cargo &> /dev/null; then
+    echo "  → cargo 未安装，正在安装 Rust..."
+    echo "  → 下载 rustup..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    echo "  → 加载 cargo 环境..."
     source "$HOME/.cargo/env"
-    cargo install tree-sitter-cli
-  }
+  fi
+  echo "  → 安装 tree-sitter-cli (这可能需要几分钟)..."
+  cargo install tree-sitter-cli
 else
   echo "无法自动安装依赖，请手动安装以下工具:"
   echo "  - neovim (>= 0.10)"
@@ -92,11 +98,14 @@ if [[ "$OS" == "Linux" ]] && [ ! -f "$HOME/.local/share/fonts/JetBrainsMonoNerdF
 
   # 下载 JetBrainsMono Nerd Font
   FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
+  echo "  → 下载字体..."
   curl -fsSL "$FONT_URL" -o /tmp/JetBrainsMonoNerdFont.zip
+  echo "  → 解压字体..."
   unzip -q /tmp/JetBrainsMonoNerdFont.zip -d "$FONT_DIR" 2>/dev/null || {
     echo "解压失败，请手动下载: $FONT_URL"
   }
   rm -f /tmp/JetBrainsMonoNerdFont.zip
+  echo "  → 字体文件已安装"
 
   # 刷新字体缓存
   if command -v fc-cache &> /dev/null; then
@@ -134,7 +143,10 @@ fi
 # 启动 Neovim 安装插件
 echo ""
 echo ">>> 安装插件..."
+echo "  → 首次启动 Neovim 并安装 Lazy.nvim 插件..."
+echo "  → 这可能需要几分钟，请耐心等待..."
 nvim --headless "+Lazy! sync" +qa 2>/dev/null || true
+echo "  → 插件安装完成"
 
 echo ""
 echo "=== 安装完成! ==="
