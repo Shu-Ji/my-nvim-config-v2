@@ -15,7 +15,7 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.smartindent = true
-opt.wrap = false
+opt.wrap = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.scrolloff = 8
@@ -59,7 +59,7 @@ vim.opt.rtp:prepend(lazypath)
 -- 加载插件
 require("lazy").setup("plugins", {
 	install = { colorscheme = { "tokyonight" } },
-	checker = { enabled = true },
+	checker = { enabled = false },
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -80,4 +80,3 @@ vim.cmd("colorscheme tokyonight")
 require("config.keymaps")
 -- 自动命令
 require("config.autocmds")
-
