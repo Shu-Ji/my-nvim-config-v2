@@ -58,7 +58,7 @@ return {
     })
   end,
   keys = {
-    { ";e", "<cmd>NvimTreeToggle<cr>", desc = "文件树" },
+    { ";e", "<cmd>NvimTreeToggle<cr>", desc = "文件树", nowait = true },
     { ";o", "<cmd>NvimTreeFocus<cr>", desc = "聚焦文件树" },
     { ";E", "<cmd>NvimTreeFindFile<cr>", desc = "定位当前文件" },
     { "<F2>", "<cmd>NvimTreeToggle<cr>", desc = "文件树" },

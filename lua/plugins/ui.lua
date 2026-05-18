@@ -117,7 +117,6 @@ return {
         { ";p", desc = "查找文件", cmd = "<cmd>Telescope find_files<cr>" },
         { ";F", desc = "全局搜索", cmd = "<cmd>Telescope live_grep<cr>" },
         { ";h", desc = "帮助", cmd = "<cmd>Telescope help_tags<cr>" },
-        { ";ee", desc = "编辑配置", cmd = "<cmd>e $MYVIMRC<cr>" },
         { ";;", desc = "快捷键列表", cmd = "<cmd>WhichKey<cr>" },
       })
     end,
