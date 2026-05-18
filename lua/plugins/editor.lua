@@ -85,7 +85,13 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      modes = {
+        char = {
+          enabled = false,
+        },
+      },
+    },
     keys = {
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Treesitter 跳转" },
       { ";s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "快速跳转 (当前屏幕)" },
